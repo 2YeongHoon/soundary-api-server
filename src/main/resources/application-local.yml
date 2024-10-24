@@ -1,0 +1,81 @@
+####################################################################################
+#                                      SERVER                                      #
+####################################################################################
+server:
+  port: 8080
+
+####################################################################################
+#                                      SPRING                                      #
+####################################################################################
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          # create | create-drop | none | update | validate
+          auto: update
+  datasource:
+    url: "jdbc:mysql://soundary.ct5obzpdeqav.ap-northeast-2.rds.amazonaws.com/soundary"
+    url-option: "?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true"
+    username: "VALUE"
+    password: "VALUE"
+  ####################################################################################
+  #                                       OAUTH                                      #
+  ####################################################################################
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: "VALUE"
+            client-secret: "VALUE"
+            redirect-uri: "VALUE"
+            authorization-grant-type: authorization_code
+            scope:
+              - email
+              - profile
+          facebook:
+            client-id: "VALUE"
+            client-secret: "VALUE"
+            redirect-uri: "VALUE"
+            authorization-grant-type: authorization_code
+            scope:
+              - email
+              - public_profile
+
+  ####################################################################################
+  #                                         S3                                       #
+  ####################################################################################
+  cloud:
+    aws:
+      s3properties:
+        credentials:
+          accessKey: "VALUE"
+          secretKey: "VALUE"
+        s3:
+          bucket-name: "soundary/"
+        region: "ap-northeast-2"
+
+  ####################################################################################
+  #                                      REDIS                                       #
+  ####################################################################################
+  data:
+    redis:
+      host: localhost
+      port: 6379
+####################################################################################
+#                                       CUSTOM                                     #
+####################################################################################
+custom:
+  client:
+    base-url: "https://soundary.io/"
+  payments:
+    client:
+      toss:
+        request-url: "VALUE"
+        widget-secret-key: "VALUE"
+
+

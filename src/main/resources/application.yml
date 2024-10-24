@@ -1,0 +1,53 @@
+####################################################################################
+#                                      SPRING                                      #
+####################################################################################
+spring:
+  profiles:
+    active: local
+  jpa:
+    open-in-view: false
+    show-sql: tru
+    defer-datasource-initialization: true
+    hibernate:
+      naming:
+        # snake case -> camel case
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    dialect: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+        order_inserts: true
+        order_updates: true
+        default_batch_fetch_size: 100
+        # batch insert size
+        jdbc:
+          batch_size: 1000
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "VALUE"
+    password: "VALUE"
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
+####################################################################################
+#                                    Security                                      #
+####################################################################################
+jwt:
+  secret: "VALUE"            # JWT 토큰 서명을 위한 시크릿 키
+  access-token-expiration: 3600000         # 액세스 토큰의 만료 시간 (1시간: 밀리초 단위)
+  refresh-token-expiration: 604800000      # 리프레시 토큰의 만료 시간 (7일: 밀리초 단위)
+
+
